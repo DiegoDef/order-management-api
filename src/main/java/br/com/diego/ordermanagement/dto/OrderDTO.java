@@ -1,6 +1,5 @@
 package br.com.diego.ordermanagement.dto;
 
-import br.com.diego.ordermanagement.entity.Item;
 import lombok.Data;
 
 import java.util.Set;
@@ -13,5 +12,5 @@ public class OrderDTO {
 
     private boolean open;
 
-    private Set<Item> items;
+    private Set<ItemDTO> items;
 }

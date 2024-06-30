@@ -4,6 +4,7 @@ import br.com.diego.ordermanagement.dto.EntityIdDTO;
 import br.com.diego.ordermanagement.dto.ItemDTO;
 import br.com.diego.ordermanagement.entity.Item;
 import br.com.diego.ordermanagement.service.ItemService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -24,14 +25,14 @@ public class ItemController {
     private final ModelMapper mapper;
 
     @PostMapping
-    public ResponseEntity<EntityIdDTO> create(@RequestBody ItemDTO dto) {
+    public ResponseEntity<EntityIdDTO> create(@Valid @RequestBody ItemDTO dto) {
         log.info("Creating item: {}", dto);
         Item item = service.insert(dto);
         return new ResponseEntity<>(mapper.map(item, EntityIdDTO.class), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<EntityIdDTO> update(@RequestBody ItemDTO dto) {
+    public ResponseEntity<EntityIdDTO> update(@Valid @RequestBody ItemDTO dto) {
         log.info("Updating item: {}", dto);
         Item item = service.update(dto);
         return new ResponseEntity<>(mapper.map(item, EntityIdDTO.class), HttpStatus.OK);
