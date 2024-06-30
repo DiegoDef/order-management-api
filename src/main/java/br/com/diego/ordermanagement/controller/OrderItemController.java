@@ -1,9 +1,9 @@
 package br.com.diego.ordermanagement.controller;
 
 import br.com.diego.ordermanagement.dto.EntityIdDTO;
-import br.com.diego.ordermanagement.dto.OrderItemsDTO;
+import br.com.diego.ordermanagement.dto.OrderItemDTO;
 import br.com.diego.ordermanagement.entity.OrderItem;
-import br.com.diego.ordermanagement.service.OrderItemsService;
+import br.com.diego.ordermanagement.service.OrderItemService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -18,39 +18,39 @@ import java.util.UUID;
 @RequestMapping("/order-items")
 @Slf4j
 @AllArgsConstructor
-public class OrderItemsController {
+public class OrderItemController {
 
-    private final OrderItemsService service;
+    private final OrderItemService service;
     private final ModelMapper mapper;
 
     @PostMapping
-    public ResponseEntity<EntityIdDTO> create(@RequestBody OrderItemsDTO dto) {
-        log.info("Creating orderItems: {}", dto);
+    public ResponseEntity<EntityIdDTO> create(@RequestBody OrderItemDTO dto) {
+        log.info("Creating orderItem: {}", dto);
         OrderItem orderItem = service.insert(dto);
         return new ResponseEntity<>(mapper.map(orderItem, EntityIdDTO.class), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<EntityIdDTO> update(@RequestBody OrderItemsDTO dto) {
-        log.info("Updating orderItems: {}", dto);
+    public ResponseEntity<EntityIdDTO> update(@RequestBody OrderItemDTO dto) {
+        log.info("Updating orderItem: {}", dto);
         OrderItem orderItem = service.update(dto);
         return new ResponseEntity<>(mapper.map(orderItem, EntityIdDTO.class), HttpStatus.OK);
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<OrderItemsDTO> find(@PathVariable UUID id) {
+    public ResponseEntity<OrderItemDTO> find(@PathVariable UUID id) {
         OrderItem orderItem = service.findById(id);
-        return new ResponseEntity<>(mapper.map(orderItem, OrderItemsDTO.class), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.map(orderItem, OrderItemDTO.class), HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<OrderItemsDTO>> findAll() {
+    public ResponseEntity<List<OrderItemDTO>> findAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
-        log.info("Deleting orderItems with id: {}", id);
+        log.info("Deleting orderItem with id: {}", id);
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
