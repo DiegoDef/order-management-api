@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: order-management-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/order-management
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+        boot: DEBUG
