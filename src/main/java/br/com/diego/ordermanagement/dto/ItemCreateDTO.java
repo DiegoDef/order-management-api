@@ -1,6 +1,5 @@
 package br.com.diego.ordermanagement.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
@@ -17,14 +16,13 @@ import java.util.UUID;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemDTO {
+public class ItemCreateDTO {
 
     private UUID id;
 
     @NotNull
     private boolean service;
 
-    @JsonIgnore
     private List<OrderDTO> orders;
 
     @NotNull

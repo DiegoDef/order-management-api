@@ -38,7 +38,7 @@ public class OrderItemController {
         return new ResponseEntity<>(mapper.map(orderItem, EntityIdDTO.class), HttpStatus.OK);
     }
 
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<OrderItemDTO> find(@PathVariable UUID id) {
         OrderItem orderItem = service.findById(id);
         return new ResponseEntity<>(mapper.map(orderItem, OrderItemDTO.class), HttpStatus.OK);

@@ -1,6 +1,7 @@
 package br.com.diego.ordermanagement.controller;
 
 import br.com.diego.ordermanagement.dto.EntityIdDTO;
+import br.com.diego.ordermanagement.dto.ItemCreateDTO;
 import br.com.diego.ordermanagement.dto.ItemDTO;
 import br.com.diego.ordermanagement.entity.Item;
 import br.com.diego.ordermanagement.service.ItemService;
@@ -25,7 +26,7 @@ public class ItemController {
     private final ModelMapper mapper;
 
     @PostMapping
-    public ResponseEntity<EntityIdDTO> create(@Valid @RequestBody ItemDTO dto) {
+    public ResponseEntity<EntityIdDTO> create(@Valid @RequestBody ItemCreateDTO dto) {
         log.info("Creating item: {}", dto);
         Item item = service.insert(dto);
         return new ResponseEntity<>(mapper.map(item, EntityIdDTO.class), HttpStatus.CREATED);
@@ -38,7 +39,7 @@ public class ItemController {
         return new ResponseEntity<>(mapper.map(item, EntityIdDTO.class), HttpStatus.OK);
     }
 
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ItemDTO> find(@PathVariable UUID id) {
         Item item = service.findById(id);
         return new ResponseEntity<>(mapper.map(item, ItemDTO.class), HttpStatus.OK);

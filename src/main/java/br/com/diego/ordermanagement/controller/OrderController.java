@@ -2,6 +2,7 @@ package br.com.diego.ordermanagement.controller;
 
 import br.com.diego.ordermanagement.dto.EntityIdDTO;
 import br.com.diego.ordermanagement.dto.OrderDTO;
+import br.com.diego.ordermanagement.dto.OrderViewDTO;
 import br.com.diego.ordermanagement.entity.Order;
 import br.com.diego.ordermanagement.service.OrderService;
 import jakarta.validation.Valid;
@@ -38,10 +39,10 @@ public class OrderController {
         return new ResponseEntity<>(mapper.map(order, EntityIdDTO.class), HttpStatus.OK);
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<OrderDTO> find(@PathVariable UUID id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderViewDTO> find(@PathVariable UUID id) {
         Order order = service.findById(id);
-        return new ResponseEntity<>(mapper.map(order, OrderDTO.class), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.map(order, OrderViewDTO.class), HttpStatus.OK);
     }
 
     @GetMapping
@@ -54,5 +55,11 @@ public class OrderController {
         log.info("Deleting order with id: {}", id);
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PatchMapping("/{id}/apply-discount")
+    public ResponseEntity<EntityIdDTO> applyDiscount(@PathVariable UUID id) {
+        Order order = service.applyDiscount(id);
+        return ResponseEntity.ok(mapper.map(order, EntityIdDTO.class));
     }
 }

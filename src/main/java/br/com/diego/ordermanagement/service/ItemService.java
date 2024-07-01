@@ -1,5 +1,6 @@
 package br.com.diego.ordermanagement.service;
 
+import br.com.diego.ordermanagement.dto.ItemCreateDTO;
 import br.com.diego.ordermanagement.dto.ItemDTO;
 import br.com.diego.ordermanagement.entity.Item;
 import br.com.diego.ordermanagement.respository.ItemRepository;
@@ -10,9 +11,8 @@ import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
-import java.util.UUID;
-
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -23,7 +23,7 @@ public class ItemService {
 
     private final ModelMapper mapper;
 
-    public Item insert(ItemDTO dto) {
+    public Item insert(ItemCreateDTO dto) {
         return repository.save(mapper.map(dto, Item.class));
     }
 
@@ -45,6 +45,7 @@ public class ItemService {
     }
 
     protected Type getTypeFindAll() {
-        return new TypeToken<List<ItemDTO>>(){}.getType();
+        return new TypeToken<List<ItemDTO>>() {
+        }.getType();
     }
 }
