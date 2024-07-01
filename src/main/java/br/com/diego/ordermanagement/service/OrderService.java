@@ -5,6 +5,7 @@ import br.com.diego.ordermanagement.dto.OrderDTO;
 import br.com.diego.ordermanagement.dto.OrderViewDTO;
 import br.com.diego.ordermanagement.entity.Item;
 import br.com.diego.ordermanagement.entity.Order;
+import br.com.diego.ordermanagement.exceptions.BadRequestException;
 import br.com.diego.ordermanagement.respository.OrderRepository;
 import br.com.diego.ordermanagement.service.validation.OrderValidationService;
 import lombok.RequiredArgsConstructor;
@@ -45,7 +46,7 @@ public class OrderService {
 
     public Order findById(UUID id) {
         return repository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Order not found with id: " + id));
+                .orElseThrow(() -> new BadRequestException("Order not found with id: " + id));
     }
 
     public void delete(UUID id) {
@@ -54,7 +55,7 @@ public class OrderService {
 
     public Order applyDiscount(UUID id) {
         Order order = repository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Order not found with id: " + id));
+                .orElseThrow(() -> new BadRequestException("Order not found with id: " + id));
         OrderValidationService.validateOrderForDiscount(order);
 
         order.setDiscount(calculateTotalDiscount(order));

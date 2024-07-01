@@ -5,6 +5,7 @@ import br.com.diego.ordermanagement.entity.Order;
 import br.com.diego.ordermanagement.helper.ItemTestHelper;
 import br.com.diego.ordermanagement.service.OrderService;
 import br.com.diego.ordermanagement.service.validation.ItemValidationService;
+import jakarta.validation.ValidationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ class ItemValidationServiceUnitTest {
         UUID itemId = UUID.randomUUID();
         when(orderService.existsByItemId(itemId)).thenReturn(Boolean.TRUE);
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> ItemValidationService.validateExistsOrderWithItem(orderService, itemId));
+        Assertions.assertThrows(ValidationException.class, () -> ItemValidationService.validateExistsOrderWithItem(orderService, itemId));
     }
 
     @Test
@@ -48,7 +49,7 @@ class ItemValidationServiceUnitTest {
         item.setActive(Boolean.FALSE);
         item.setOrders(List.of(new Order()));
 
-        Assertions.assertThrows(IllegalArgumentException.class, (() -> ItemValidationService.validateDeactivatedItemWithOrder(item)));
+        Assertions.assertThrows(ValidationException.class, (() -> ItemValidationService.validateDeactivatedItemWithOrder(item)));
     }
 
     @Test

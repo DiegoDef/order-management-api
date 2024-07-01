@@ -2,6 +2,7 @@ package br.com.diego.ordermanagement.service;
 
 import br.com.diego.ordermanagement.dto.OrderItemDTO;
 import br.com.diego.ordermanagement.entity.OrderItem;
+import br.com.diego.ordermanagement.exceptions.BadRequestException;
 import br.com.diego.ordermanagement.respository.OrderItemRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +37,7 @@ public class OrderItemService {
 
     public OrderItem findById(UUID id) {
         return repository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("OrderItem not found with id: " + id));
+                .orElseThrow(() -> new BadRequestException("OrderItem not found with id: " + id));
     }
 
     public void delete(UUID id) {

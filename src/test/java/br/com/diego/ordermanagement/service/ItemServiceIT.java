@@ -7,6 +7,7 @@ import br.com.diego.ordermanagement.dto.ItemViewDTO;
 import br.com.diego.ordermanagement.dto.OrderDTO;
 import br.com.diego.ordermanagement.entity.Item;
 import br.com.diego.ordermanagement.entity.Order;
+import br.com.diego.ordermanagement.exceptions.BadRequestException;
 import br.com.diego.ordermanagement.helper.ItemTestHelper;
 import br.com.diego.ordermanagement.helper.OrderTestHelper;
 import br.com.diego.ordermanagement.respository.ItemRepository;
@@ -121,7 +122,7 @@ class ItemServiceIT {
         toCreate.setOrders(List.of(mapper.map(order, OrderDTO.class)));
         toCreate.setActive(Boolean.FALSE);
 
-        assertThrows(IllegalArgumentException.class, () -> itemService.insert(toCreate));
+        assertThrows(BadRequestException.class, () -> itemService.insert(toCreate));
     }
 
     @Test
@@ -236,7 +237,7 @@ class ItemServiceIT {
         boolean contains = false;
         try {
             itemService.findById(created.getId());
-        } catch (IllegalArgumentException e) {
+        } catch (BadRequestException e) {
             contains = true;
         }
         assertTrue(contains);
@@ -254,7 +255,7 @@ class ItemServiceIT {
         UUID idToDelete = itemService.findById(created.getId()).getId();
 
         assertNotNull(idToDelete);
-        assertThrows(IllegalArgumentException.class, () -> itemService.delete(idToDelete));
+        assertThrows(BadRequestException.class, () -> itemService.delete(idToDelete));
     }
 
     @Test

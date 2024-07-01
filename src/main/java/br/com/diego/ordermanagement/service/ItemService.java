@@ -4,6 +4,7 @@ import br.com.diego.ordermanagement.dto.ItemCreateDTO;
 import br.com.diego.ordermanagement.dto.ItemDTO;
 import br.com.diego.ordermanagement.dto.ItemViewDTO;
 import br.com.diego.ordermanagement.entity.Item;
+import br.com.diego.ordermanagement.exceptions.BadRequestException;
 import br.com.diego.ordermanagement.respository.ItemRepository;
 import br.com.diego.ordermanagement.service.validation.ItemValidationService;
 import lombok.RequiredArgsConstructor;
@@ -45,7 +46,7 @@ public class ItemService {
 
     public Item findById(UUID id) {
         return repository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Item not found with id: " + id));
+                .orElseThrow(() -> new BadRequestException("Item not found with id: " + id));
     }
 
     public void delete(UUID id) {
