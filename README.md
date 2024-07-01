@@ -1,5 +1,3 @@
-# Order Management API
-
 # Passos iniciais para rodar o projeto
 - Abra o terminal na pasta `database` e rode o `docker compose` utilizando `docker compose -f compose.yaml up -d`
 
