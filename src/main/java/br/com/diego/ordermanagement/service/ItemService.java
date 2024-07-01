@@ -4,6 +4,7 @@ import br.com.diego.ordermanagement.dto.ItemCreateDTO;
 import br.com.diego.ordermanagement.dto.ItemDTO;
 import br.com.diego.ordermanagement.entity.Item;
 import br.com.diego.ordermanagement.respository.ItemRepository;
+import br.com.diego.ordermanagement.validation.ItemValidationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -23,8 +24,12 @@ public class ItemService {
 
     private final ModelMapper mapper;
 
+    private final OrderService orderService;
+
     public Item insert(ItemCreateDTO dto) {
-        return repository.save(mapper.map(dto, Item.class));
+        Item item = mapper.map(dto, Item.class);
+        ItemValidationService.validateDeactivatedItemInOrder(item);
+        return repository.save(item);
     }
 
     public List<ItemDTO> findAll() {
@@ -32,7 +37,9 @@ public class ItemService {
     }
 
     public Item update(ItemDTO dto) {
-        return repository.save(mapper.map(dto, Item.class));
+        Item item = mapper.map(dto, Item.class);
+        ItemValidationService.validateDeactivatedItemInOrder(item);
+        return repository.save(item);
     }
 
     public Item findById(UUID id) {
@@ -41,6 +48,7 @@ public class ItemService {
     }
 
     public void delete(UUID id) {
+        ItemValidationService.validateExistsOrderWithItem(orderService, id);
         repository.deleteById(id);
     }
 

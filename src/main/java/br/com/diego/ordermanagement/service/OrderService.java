@@ -76,4 +76,8 @@ public class OrderService {
         return new TypeToken<List<OrderViewDTO>>() {
         }.getType();
     }
+
+    public boolean existsByItemId(UUID id) {
+        return repository.existsByItems_Id(id);
+    }
 }

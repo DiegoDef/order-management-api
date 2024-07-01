@@ -42,4 +42,7 @@ public class Item {
     @Digits(integer = 9, fraction = 2)
     @Column(name = "price")
     private BigDecimal price;
+
+    @Column(name = "active")
+    private boolean active;
 }
