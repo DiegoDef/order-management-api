@@ -29,7 +29,7 @@ public class ItemService {
 
     public Item insert(ItemCreateDTO dto) {
         Item item = mapper.map(dto, Item.class);
-        ItemValidationService.validateDeactivatedItemInOrder(item);
+        ItemValidationService.validateDeactivatedItemWithOrder(item);
         return repository.save(item);
     }
 
@@ -39,7 +39,7 @@ public class ItemService {
 
     public Item update(ItemDTO dto) {
         Item item = mapper.map(dto, Item.class);
-        ItemValidationService.validateDeactivatedItemInOrder(item);
+        ItemValidationService.validateDeactivatedItemWithOrder(item);
         return repository.save(item);
     }
 

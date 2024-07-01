@@ -16,7 +16,7 @@ public class ItemValidationService {
         }
     }
 
-    public void validateDeactivatedItemInOrder(Item item) {
+    public void validateDeactivatedItemWithOrder(Item item) {
         if (Boolean.FALSE.equals(item.isActive()) && !CollectionUtils.isEmpty(item.getOrders())) {
             throw new IllegalArgumentException(String.format("Adding deactivated item with id %s in order is not allowed", item.getId()));
         }
