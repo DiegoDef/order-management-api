@@ -1,5 +1,6 @@
 package br.com.diego.ordermanagement.service;
 
+import br.com.diego.ordermanagement.dto.OrderCreateDTO;
 import br.com.diego.ordermanagement.dto.OrderDTO;
 import br.com.diego.ordermanagement.dto.OrderViewDTO;
 import br.com.diego.ordermanagement.entity.Item;
@@ -30,7 +31,7 @@ public class OrderService {
 
     private final BigDecimal fixedDiscount = BigDecimal.valueOf(0.2);
 
-    public Order insert(OrderDTO dto) {
+    public Order insert(OrderCreateDTO dto) {
         return repository.save(mapper.map(dto, Order.class));
     }
 

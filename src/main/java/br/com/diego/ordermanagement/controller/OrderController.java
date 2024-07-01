@@ -1,6 +1,7 @@
 package br.com.diego.ordermanagement.controller;
 
 import br.com.diego.ordermanagement.dto.EntityIdDTO;
+import br.com.diego.ordermanagement.dto.OrderCreateDTO;
 import br.com.diego.ordermanagement.dto.OrderDTO;
 import br.com.diego.ordermanagement.dto.OrderViewDTO;
 import br.com.diego.ordermanagement.entity.Order;
@@ -26,7 +27,7 @@ public class OrderController {
     private final ModelMapper mapper;
 
     @PostMapping
-    public ResponseEntity<EntityIdDTO> create(@Valid @RequestBody OrderDTO dto) {
+    public ResponseEntity<EntityIdDTO> create(@Valid @RequestBody OrderCreateDTO dto) {
         log.info("Creating order: {}", dto);
         Order order = service.insert(dto);
         return new ResponseEntity<>(mapper.map(order, EntityIdDTO.class), HttpStatus.CREATED);

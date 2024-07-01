@@ -2,6 +2,7 @@ package br.com.diego.ordermanagement.service;
 
 import br.com.diego.ordermanagement.dto.ItemCreateDTO;
 import br.com.diego.ordermanagement.dto.ItemDTO;
+import br.com.diego.ordermanagement.dto.ItemViewDTO;
 import br.com.diego.ordermanagement.entity.Item;
 import br.com.diego.ordermanagement.respository.ItemRepository;
 import br.com.diego.ordermanagement.validation.ItemValidationService;
@@ -32,7 +33,7 @@ public class ItemService {
         return repository.save(item);
     }
 
-    public List<ItemDTO> findAll() {
+    public List<ItemViewDTO> findAll() {
         return mapper.map(repository.findAll(), getTypeFindAll());
     }
 
@@ -53,7 +54,7 @@ public class ItemService {
     }
 
     protected Type getTypeFindAll() {
-        return new TypeToken<List<ItemDTO>>() {
+        return new TypeToken<List<ItemViewDTO>>() {
         }.getType();
     }
 }

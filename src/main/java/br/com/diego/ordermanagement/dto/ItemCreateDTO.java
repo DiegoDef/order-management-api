@@ -1,9 +1,6 @@
 package br.com.diego.ordermanagement.dto;
 
-import jakarta.validation.constraints.DecimalMax;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -19,6 +16,10 @@ import java.util.UUID;
 public class ItemCreateDTO {
 
     private UUID id;
+
+    @Size(max = 200)
+    @NotEmpty
+    private String name;
 
     @NotNull
     private boolean service;

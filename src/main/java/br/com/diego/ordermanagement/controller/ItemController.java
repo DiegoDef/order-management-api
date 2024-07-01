@@ -3,6 +3,7 @@ package br.com.diego.ordermanagement.controller;
 import br.com.diego.ordermanagement.dto.EntityIdDTO;
 import br.com.diego.ordermanagement.dto.ItemCreateDTO;
 import br.com.diego.ordermanagement.dto.ItemDTO;
+import br.com.diego.ordermanagement.dto.ItemViewDTO;
 import br.com.diego.ordermanagement.entity.Item;
 import br.com.diego.ordermanagement.service.ItemService;
 import jakarta.validation.Valid;
@@ -40,13 +41,13 @@ public class ItemController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ItemDTO> find(@PathVariable UUID id) {
+    public ResponseEntity<ItemViewDTO> find(@PathVariable UUID id) {
         Item item = service.findById(id);
-        return new ResponseEntity<>(mapper.map(item, ItemDTO.class), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.map(item, ItemViewDTO.class), HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<ItemDTO>> findAll() {
+    public ResponseEntity<List<ItemViewDTO>> findAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 

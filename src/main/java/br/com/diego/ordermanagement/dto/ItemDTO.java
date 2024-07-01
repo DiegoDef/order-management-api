@@ -1,10 +1,7 @@
 package br.com.diego.ordermanagement.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.validation.constraints.DecimalMax;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -21,6 +18,10 @@ public class ItemDTO {
 
     private UUID id;
 
+    @Size(max = 200)
+    @NotEmpty
+    private String name;
+
     @NotNull
     private boolean service;
 
@@ -31,7 +32,7 @@ public class ItemDTO {
     @DecimalMin(value = "0.0")
     @DecimalMax(value = "999999999.99")
     @Digits(integer = 9, fraction = 2)
-    private BigDecimal price;
+    private BigDecimal price = BigDecimal.ZERO;
 
     private boolean active;
 }

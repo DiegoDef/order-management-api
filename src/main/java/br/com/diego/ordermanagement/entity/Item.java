@@ -1,10 +1,7 @@
 package br.com.diego.ordermanagement.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMax;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,6 +23,11 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "item_id")
     private UUID id;
+
+    @Size(max = 200)
+    @NotEmpty
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "is_service")
     private boolean service;
