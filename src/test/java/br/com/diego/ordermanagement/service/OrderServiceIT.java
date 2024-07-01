@@ -161,9 +161,9 @@ class OrderServiceIT {
             orderService.insert(toCreate);
         }
 
-        List<OrderDTO> allItems = orderService.findAll();
+        List<OrderDTO> allOrders = orderService.findAll();
 
-        assertEquals(12, allItems.size(), "The number of Orders found should be 12");
+        assertEquals(12, allOrders.size(), "The number of Orders found should be 12");
     }
 
     @Test

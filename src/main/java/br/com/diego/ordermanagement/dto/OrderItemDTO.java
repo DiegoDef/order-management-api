@@ -1,20 +1,24 @@
 package br.com.diego.ordermanagement.dto;
 
-import br.com.diego.ordermanagement.entity.Item;
-import br.com.diego.ordermanagement.entity.Order;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderItemDTO {
 
     private UUID id;
 
     @NotNull
-    private Order order;
+    private OrderDTO order;
 
     @NotNull
-    private Item item;
+    private ItemDTO item;
 }
