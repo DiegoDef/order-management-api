@@ -5,7 +5,7 @@ import br.com.diego.ordermanagement.dto.ItemDTO;
 import br.com.diego.ordermanagement.dto.ItemViewDTO;
 import br.com.diego.ordermanagement.entity.Item;
 import br.com.diego.ordermanagement.respository.ItemRepository;
-import br.com.diego.ordermanagement.validation.ItemValidationService;
+import br.com.diego.ordermanagement.service.validation.ItemValidationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

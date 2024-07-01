@@ -1,4 +1,4 @@
-package br.com.diego.ordermanagement.validation;
+package br.com.diego.ordermanagement.service.validation;
 
 import br.com.diego.ordermanagement.entity.Order;
 import lombok.experimental.UtilityClass;
