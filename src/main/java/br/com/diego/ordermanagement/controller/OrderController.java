@@ -1,9 +1,6 @@
 package br.com.diego.ordermanagement.controller;
 
-import br.com.diego.ordermanagement.dto.EntityIdDTO;
-import br.com.diego.ordermanagement.dto.OrderCreateDTO;
-import br.com.diego.ordermanagement.dto.OrderDTO;
-import br.com.diego.ordermanagement.dto.OrderViewDTO;
+import br.com.diego.ordermanagement.dto.*;
 import br.com.diego.ordermanagement.entity.Order;
 import br.com.diego.ordermanagement.service.OrderService;
 import jakarta.validation.Valid;
@@ -34,7 +31,7 @@ public class OrderController {
     }
 
     @PutMapping
-    public ResponseEntity<EntityIdDTO> update(@Valid @RequestBody OrderDTO dto) {
+    public ResponseEntity<EntityIdDTO> update(@Valid @RequestBody OrderUpdateDTO dto) {
         log.info("Updating Order: {}", dto);
         Order order = service.update(dto);
         return new ResponseEntity<>(mapper.map(order, EntityIdDTO.class), HttpStatus.OK);

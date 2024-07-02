@@ -1,7 +1,7 @@
 package br.com.diego.ordermanagement.helper;
 
 import br.com.diego.ordermanagement.dto.ItemCreateDTO;
-import br.com.diego.ordermanagement.dto.ItemDTO;
+import br.com.diego.ordermanagement.dto.ItemUpdateDTO;
 import br.com.diego.ordermanagement.entity.Item;
 import lombok.experimental.UtilityClass;
 
@@ -28,8 +28,8 @@ public class ItemTestHelper {
         return item;
     }
 
-    public static ItemDTO createItemToUpdate() {
-        return ItemDTO.builder()
+    public static ItemUpdateDTO createItemToUpdate() {
+        return ItemUpdateDTO.builder()
                 .name("Item 2")
                 .price(BigDecimal.ZERO)
                 .service(false)

@@ -3,7 +3,7 @@ package br.com.diego.ordermanagement.service;
 import br.com.diego.ordermanagement.config.TestOrderConfiguration;
 import br.com.diego.ordermanagement.dto.ItemDTO;
 import br.com.diego.ordermanagement.dto.OrderCreateDTO;
-import br.com.diego.ordermanagement.dto.OrderDTO;
+import br.com.diego.ordermanagement.dto.OrderUpdateDTO;
 import br.com.diego.ordermanagement.entity.Item;
 import br.com.diego.ordermanagement.entity.Order;
 import br.com.diego.ordermanagement.helper.ItemTestHelper;
@@ -132,7 +132,7 @@ class OrderServiceIT {
         order.setOpen(false);
         orderRepository.save(order);
 
-        OrderDTO toUpdate = mapper.map(order, OrderDTO.class);
+        OrderUpdateDTO toUpdate = mapper.map(order, OrderUpdateDTO.class);
 
         Order updated = orderService.update(toUpdate);
 
@@ -161,7 +161,7 @@ class OrderServiceIT {
             orderService.insert(toCreate);
         }
 
-        List<OrderDTO> allOrders = orderService.findAll();
+        List<Order> allOrders = orderRepository.findAll();
 
         assertEquals(12, allOrders.size(), "The number of Orders found should be 12");
     }

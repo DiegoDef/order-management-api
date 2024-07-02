@@ -2,6 +2,7 @@ package br.com.diego.ordermanagement.service;
 
 import br.com.diego.ordermanagement.dto.OrderCreateDTO;
 import br.com.diego.ordermanagement.dto.OrderDTO;
+import br.com.diego.ordermanagement.dto.OrderUpdateDTO;
 import br.com.diego.ordermanagement.dto.OrderViewDTO;
 import br.com.diego.ordermanagement.entity.Item;
 import br.com.diego.ordermanagement.entity.Order;
@@ -40,7 +41,7 @@ public class OrderService {
         return mapper.map(repository.findAll(), getTypeFindAll());
     }
 
-    public Order update(OrderDTO dto) {
+    public Order update(OrderUpdateDTO dto) {
         return repository.save(mapper.map(dto, Order.class));
     }
 

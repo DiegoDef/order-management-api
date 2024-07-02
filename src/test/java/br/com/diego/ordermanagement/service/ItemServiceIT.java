@@ -1,10 +1,7 @@
 package br.com.diego.ordermanagement.service;
 
 import br.com.diego.ordermanagement.config.TestOrderConfiguration;
-import br.com.diego.ordermanagement.dto.ItemCreateDTO;
-import br.com.diego.ordermanagement.dto.ItemDTO;
-import br.com.diego.ordermanagement.dto.ItemViewDTO;
-import br.com.diego.ordermanagement.dto.OrderDTO;
+import br.com.diego.ordermanagement.dto.*;
 import br.com.diego.ordermanagement.entity.Item;
 import br.com.diego.ordermanagement.entity.Order;
 import br.com.diego.ordermanagement.exceptions.BadRequestException;
@@ -160,7 +157,7 @@ class ItemServiceIT {
     void shouldUpdateItem() {
         ItemCreateDTO toCreate = ItemTestHelper.createItemDTO();
         Item created = itemService.insert(toCreate);
-        ItemDTO toUpdate = ItemTestHelper.createItemToUpdate();
+        ItemUpdateDTO toUpdate = ItemTestHelper.createItemToUpdate();
         created.setId(toUpdate.getId());
 
         Item updated = itemService.update(toUpdate);
@@ -217,7 +214,7 @@ class ItemServiceIT {
             itemService.insert(toCreate);
         }
 
-        List<ItemViewDTO> allItems = itemService.findAll();
+        List<Item> allItems = itemRepository.findAll();
 
         assertEquals(12, allItems.size(), "The number of items found should be 12");
     }

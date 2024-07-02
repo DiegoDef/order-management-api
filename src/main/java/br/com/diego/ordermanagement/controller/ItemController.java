@@ -1,11 +1,11 @@
 package br.com.diego.ordermanagement.controller;
 
-import br.com.diego.ordermanagement.dto.EntityIdDTO;
-import br.com.diego.ordermanagement.dto.ItemCreateDTO;
-import br.com.diego.ordermanagement.dto.ItemDTO;
-import br.com.diego.ordermanagement.dto.ItemViewDTO;
+import br.com.diego.ordermanagement.dto.*;
 import br.com.diego.ordermanagement.entity.Item;
+import br.com.diego.ordermanagement.predicate.ItemPredicateBuilder;
+import br.com.diego.ordermanagement.predicate.utils.FilterUils;
 import br.com.diego.ordermanagement.service.ItemService;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,7 @@ public class ItemController {
     }
 
     @PutMapping
-    public ResponseEntity<EntityIdDTO> update(@Valid @RequestBody ItemDTO dto) {
+    public ResponseEntity<EntityIdDTO> update(@Valid @RequestBody ItemUpdateDTO dto) {
         log.info("Updating item: {}", dto);
         Item item = service.update(dto);
         return new ResponseEntity<>(mapper.map(item, EntityIdDTO.class), HttpStatus.OK);
@@ -47,8 +47,9 @@ public class ItemController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ItemViewDTO>> findAll() {
-        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<ItemViewDTO>> findAll(@RequestParam(required = false, value = "search") String search) {
+        BooleanExpression filter = FilterUils.createFilter(new ItemPredicateBuilder(), search);
+        return new ResponseEntity<>(service.findAll(filter), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

@@ -1,12 +1,13 @@
 package br.com.diego.ordermanagement.service;
 
 import br.com.diego.ordermanagement.dto.ItemCreateDTO;
-import br.com.diego.ordermanagement.dto.ItemDTO;
+import br.com.diego.ordermanagement.dto.ItemUpdateDTO;
 import br.com.diego.ordermanagement.dto.ItemViewDTO;
 import br.com.diego.ordermanagement.entity.Item;
 import br.com.diego.ordermanagement.exceptions.BadRequestException;
 import br.com.diego.ordermanagement.respository.ItemRepository;
 import br.com.diego.ordermanagement.service.validation.ItemValidationService;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -34,11 +35,11 @@ public class ItemService {
         return repository.save(item);
     }
 
-    public List<ItemViewDTO> findAll() {
-        return mapper.map(repository.findAll(), getTypeFindAll());
+    public List<ItemViewDTO> findAll(BooleanExpression ex) {
+        return mapper.map(repository.findAll(ex), getTypeFindAll());
     }
 
-    public Item update(ItemDTO dto) {
+    public Item update(ItemUpdateDTO dto) {
         Item item = mapper.map(dto, Item.class);
         ItemValidationService.validateDeactivatedItemWithOrder(item);
         return repository.save(item);
