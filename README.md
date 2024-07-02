@@ -20,7 +20,6 @@ Este projeto é uma API de gestão de gedidos construída usando Spring Boot. El
 - É possível fazer o cadastro de um item especificando se é um `servico`, se esta `ativo` entre outros parâmetros. O endpoint é `POST /item`
 ```shell
 {
-  {
     "service": true,
     "active": true,
     "name": "Playstation 3",
@@ -30,7 +29,6 @@ Este projeto é uma API de gestão de gedidos construída usando Spring Boot. El
          }
     ],
     "price": 11
-}
 }
 ```
 
@@ -68,7 +66,7 @@ Este projeto é uma API de gestão de gedidos construída usando Spring Boot. El
         ],
         "price": 10.00,
         "active": true
-    }
+}
 ```
 
 #### FindAll Item `Get /item`
