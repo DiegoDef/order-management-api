@@ -70,7 +70,7 @@ Este projeto é uma API de gestão de gedidos construída usando Spring Boot. El
 ```
 
 #### FindAll Item `Get /item`
-- Neste endpoint é possível enviar o parâmetro `search`, especificando filtros que desejar, utilizando `:`para igual ou contains se for string, `<` para menor que e `>` para maior que, separando os campos e valores por virgula. Parâmetro search não é obrigatório. Alguns exemplos:
+- Neste endpoint é possível enviar o parâmetro `search`, especificando filtros que desejar, utilizando `:` para igual ou contains se for string, `<` para menor que e `>` para maior que, separando os campos e valores por virgula. Parâmetro search não é obrigatório. Alguns exemplos:
   `/item?search=name:"playstation",price<1000,service:false`
   `/item?search=name:"conserto",price<200,service:true`
   `/item?search=name:"conserto",service:true`
